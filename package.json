@@ -12,14 +12,17 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.32",
     "@babel/core": "^7.0.0-beta.32",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.34",
+    "@babel/plugin-syntax-object-rest-spread": "^7.0.0-beta.34",
+    "@babel/polyfill": "^7.0.0-beta.32",
     "@babel/preset-env": "^7.0.0-beta.34",
     "babel-core": "^7.0.0-0",
     "babel-loader": "8.0.0-beta.0",
     "cross-env": "^5.1.1",
     "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
     "node-sass": "^4.7.2",
-    "nw-share": "^1.14.10",
     "postcss": "^6.0.16",
     "postcss-loader": "^2.0.10",
     "sass-loader": "^6.0.6",
@@ -30,9 +33,6 @@
     "webpack-dev-server": "^2.6.1"
   },
   "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.34",
-    "@babel/plugin-syntax-object-rest-spread": "^7.0.0-beta.34",
-    "@babel/polyfill": "^7.0.0-beta.32",
-    "extract-text-webpack-plugin": "^3.0.2"
+    "nw-share": "^1.14.10"
   }
 }
