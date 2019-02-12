@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
+const px2rem = require('postcss-px2rem');
 
 console.log(path.join(__dirname, 'dist'))
 module.exports = {
@@ -22,10 +23,6 @@ module.exports = {
         new ExtractTextPlugin({
             filename: '[name].css',
             allChunks: true
-        }),
-        new ExtractTextPlugin({
-            filename: '[name].css',
-            allChunks: true
         })
     ],
     resolve: {
@@ -41,34 +38,20 @@ module.exports = {
                 use: 'babel-loader'
             },
             {
-                test:/\.scss$/,
+                test:/\.s?css$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: [ { loader: 'css-loader'},
                             {loader: 'postcss-loader', options: {
-                                  plugins: function () {
-                                      return [
-                                          require('autoprefixer')
-                                      ];
-                                  }
+                                    plugins: function () {
+                                        return [
+                                            require('autoprefixer'),
+                                            px2rem({remUnit: 75})
+                                        ];
+                                    }
                               }
                             },
                             {loader: 'sass-loader'}]
-                })
-            },
-            {
-                test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [{ loader: 'css-loader', options: {minimize: true}},
-                            {loader: 'postcss-loader', options: {
-                                  plugins: function () {
-                                      return [
-                                          require('autoprefixer')
-                                      ];
-                                  }
-                              }
-                            }]
                 })
             },
             {test: /\.(png|jpg|gif|TTF|eot)$/, use: "url-loader?limit=8192&name=image/[name].[ext]"}

@@ -16,7 +16,6 @@
     "@babel/plugin-syntax-object-rest-spread": "^7.0.0-beta.34",
     "@babel/polyfill": "^7.0.0-beta.32",
     "@babel/preset-env": "^7.0.0-beta.34",
-    "babel-core": "^7.0.0-0",
     "babel-loader": "8.0.0-beta.0",
     "cross-env": "^5.1.1",
     "css-loader": "^0.28.4",
@@ -33,6 +32,7 @@
     "webpack-dev-server": "^2.6.1"
   },
   "dependencies": {
-    "nw-share": "^1.14.10"
+    "nw-share": "^1.14.10",
+    "postcss-px2rem": "^0.3.0"
   }
 }

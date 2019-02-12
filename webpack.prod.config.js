@@ -2,6 +2,7 @@ const webpack = require('webpack');
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
+const px2rem = require('postcss-px2rem');
 
 module.exports = {
     entry: {
@@ -12,10 +13,6 @@ module.exports = {
         filename: "[name].bundle.js"
     },
     plugins: [
-        new ExtractTextPlugin({
-            filename: '[name].css',
-            allChunks: true
-        }),
        // new HtmlWebpackPlugin({
        //          inject: false,
        //          template: 'template.html',
@@ -54,34 +51,20 @@ module.exports = {
                 use: 'babel-loader'
             },
             {
-                test:/\.scss$/,
+                test:/\.s?css$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: [{ loader: 'css-loader', options: {minimize: true}},
                             {loader: 'postcss-loader', options: {
                                   plugins: function () {
                                       return [
-                                          require('autoprefixer')
+                                          require('autoprefixer'),
+                                          px2rem({remUnit: 75})
                                       ];
                                   }
                               }
                             },
                             {loader: 'sass-loader'}]
-                })
-            },
-            {
-                test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [{ loader: 'css-loader', options: {minimize: true}},
-                            {loader: 'postcss-loader', options: {
-                                  plugins: function () {
-                                      return [
-                                          require('autoprefixer')
-                                      ];
-                                  }
-                              }
-                            }]
                 })
             },
             {test: /\.(png|jpg|gif|TTF|eot)$/, use: "url-loader?limit=8192&name=image/[name].[ext]"}
